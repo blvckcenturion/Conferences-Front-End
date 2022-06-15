@@ -24,6 +24,7 @@ export const createUser = async (data: UserRegister) => {
         url: "/",
         data,
     })
+    console.log('aa')
     return response.status;
 }
 
@@ -54,6 +55,21 @@ export const getUserToken = () => {
     return null
     
     return localStorage.getItem("jwt");
+}
+
+export const getUser = async () => {
+    const token = getUserToken();
+    if(token) {
+        const response = await axios({
+            method: "GET",
+            url: `${baseURL}/profile`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(response)
+        return response.data;
+    }
 }
 
 const storeUserToken = (jwt: string) => {

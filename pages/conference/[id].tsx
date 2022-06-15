@@ -1,8 +1,9 @@
 import { NextPage } from 'next'
-import React from 'react'
-import { loadConference, loadConferences } from '../../lib/conferences/conferences'
-
+import React, { useEffect, useState } from 'react'
+import { loadConference, loadConferences, subscribeToConference } from '../../lib/conferences/conferences'
+import {getUser} from '../../lib/user/user'
 interface Props {
+    userId: string,
     name: string,
     image: string,
     startDate: string,
@@ -18,7 +19,8 @@ interface Props {
 }
 
 
-const Conference: NextPage<Props> = ({ image, description, city,country,address,name, startDate, endDate, presenters, addressDetails }) => {
+const Conference: NextPage<Props> = ({ participants, id, userId, image, description, city,country,address,name, startDate, endDate, presenters, addressDetails }) => {
+    const [user, setUser] = useState<any>();
     const sDate = new Date(startDate)
     const eDate = new Date(endDate)
     const days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
@@ -28,9 +30,22 @@ const Conference: NextPage<Props> = ({ image, description, city,country,address,
     const startMonth = months[sDate.getMonth()]
     const endDay = days[eDate.getDay()]
     const endMonth = months[eDate.getMonth()]
-    const handleInscription = () => {
-        console.log('inscribirse')
+    const handleInscription = async () => {
+        // console.log(id)
+        const response = await subscribeToConference(id)
+        console.log(response)
     }
+
+    useEffect(() => {
+        (async () => {
+            const user = await getUser()
+            if (user) {
+                console.log(participants)
+                setUser(user)
+            }
+        })()
+    }, [])
+
   return (
       <div className="conference">
           <div>
@@ -48,7 +63,8 @@ const Conference: NextPage<Props> = ({ image, description, city,country,address,
           <div>
               <div>
                   <h3>DESCRIPCION</h3>
-                  <button onClick={handleInscription}>Inscribirse</button>
+                  {user && user.userId !== userId && !participants.flat().includes(user.userId) && <button onClick={handleInscription}>Inscribirse</button>}
+                  {user && participants.flat().includes(user.userId) && <button>Ya estas inscrito</button>}
               </div>
               <div>
                   <p>{description}</p>

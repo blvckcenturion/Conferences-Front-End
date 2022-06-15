@@ -1,0 +1,165 @@
+.profile{
+    @include flex;
+    width: 100%;
+    flex-direction: column;
+    @include lg{
+        height: calc(100vh - 102px);
+        flex-direction: row;
+    }
+    &-options{
+        @include flex;
+        width: 100%;
+        height: 25vh;
+        @include lg{
+            width: 15%;
+            height: 100%;
+            border-right: 2px solid;
+        }
+        flex-direction: column;
+        
+        > div:first-of-type{
+            font-family: $main-font;
+            height: 30%;
+            width: 100%;
+            @include flex;
+            text-align: center;
+            
+            border: {
+                bottom: 2px solid;
+            };
+            h2{
+                font-size: 1.2rem;
+            }
+            @include lg{
+                height: 10%;
+                width: 100%;
+                
+            }
+        }
+        > div:last-of-type {
+            @include flex;
+            height: 70%;
+            width: 100%;
+
+            border-bottom: 2px solid;
+            @include lg{
+                border-bottom: 0;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+            }
+            > div{
+                @include flex;
+                height: 80%;
+                @include lg{
+                    height: 20%;
+                }
+                justify-content: space-around;
+                flex-direction: column;
+                width: 60%;
+                h4{
+                    font-size: 1rem;
+                    @include lg{
+                        font-size: 1.3rem;
+                    }
+                    font-family: $main-font;
+                    margin: 0;
+                    padding: 0;
+                }
+                svg {
+                    width: 20%;
+                    margin-bottom: 1vh;
+                    @include lg{
+                        width: 25%;
+                        margin-bottom: 5vh;
+                    }
+                }
+                &:hover{ 
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+    &-main{
+        @include flex;
+        @include lg{
+            width: 85%;
+            height: 100%;
+        }
+        width: 100%;
+        min-height: 90vh;
+        > div{
+            @include flex;
+            background-color: blue;
+            width: 90%;
+            height: 95%;
+        }
+        .new {
+            .form{
+                width: 100%;
+                height: 100%;
+                &-heading{
+                    width: 100%;
+                    height: 5%;
+                    h2{
+                        margin: 0;
+                        font-size: 1.5rem;
+                    }
+                    margin-bottom: 1vh;
+                }
+                &-body{
+                    width: 100%;
+                    height: 90%;
+                }
+                &-input{
+                    margin-bottom: 2vh;
+                    height: 4vh;
+                }
+                &-action{ 
+                    width: 100%;
+                    height: 5%;
+                    margin-bottom: 1vh;
+                }
+            }
+        }
+        .joined, .created{
+            border: 2px solid;
+            flex-direction: column;
+            > div:first-of-type{
+                height: 10%;
+                width: 100%;
+                border-bottom: 2px solid;
+                h2{
+                    font-family: $main-font;
+                    font-size: 2.5rem;
+                    text-align: center;
+                }
+            }
+            > div:last-of-type{
+                @include flex;
+                height: 90%;
+                width: 100%;
+                .joined-grid{
+                    overflow: scroll;
+                    width: 90%;
+                    height: 90%;
+                    display: grid;
+                    grid-template-columns: repeat(2,1fr);
+                    grid-gap: 1rem;
+                    .conference-card{
+                        height: 50vh;
+                        width: calc(100% - 4px);
+                    }
+                }
+                &-no-results{
+                    @include flex;
+                    width: 90%;
+                    height: 90%;
+                }
+            }
+        }
+    }
+
+
+}

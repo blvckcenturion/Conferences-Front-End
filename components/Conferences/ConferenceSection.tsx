@@ -14,7 +14,7 @@ const ConferenceSection: FC<Props> = ({ city, conferences }) => {
             <h2>EVENTOS EN <b>{city.toUpperCase()} ({conferences.length})</b></h2>    
           </div>
           <div className="conference-section-content">
-        {conferences.map((conference, i) => <ConferenceCard key={i} id={conference._id} {...conference}/>)}
+          {conferences.map((conference, i) => <ConferenceCard key={i} id={conference._id} {...conference}/>)}
           </div>
     </div>
   )

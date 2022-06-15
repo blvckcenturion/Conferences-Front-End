@@ -6,11 +6,13 @@ interface Props {
   image: string,
   name: string,
   startDate: string,
-  presenters: string[]
-  
+  presenters: string[],
+  isProfile?: boolean,
+  isEdit?: boolean,
+
 }
 
-const ConferenceCard : FC<Props> = ({image, name, startDate, presenters, id}) => {
+const ConferenceCard : FC<Props> = ({image, name, startDate, presenters, id, isProfile, isEdit}) => {
   const router = useRouter()
   const date = new Date(startDate)
   const day = date.getDate()
@@ -19,6 +21,9 @@ const ConferenceCard : FC<Props> = ({image, name, startDate, presenters, id}) =>
 
   const handleClick = () => {
     router.push(`/conference/${id}`)
+    if (isEdit) {
+      router.push(`/edit/${id}`)
+    }
   }
   return (
     <div className="conference-card">
@@ -34,9 +39,9 @@ const ConferenceCard : FC<Props> = ({image, name, startDate, presenters, id}) =>
           <p>{`Por: ${presenters[0]} ${presenters.length > 1 ? `y ${presenters.length-1}+` : ''}`}</p>
         </div>
       </div>
-      <button className='conference-card-button' onClick={handleClick}>
-        Quiero Inscribirme
-      </button>
+      {(<button className='conference-card-button' onClick={handleClick}>
+        {isProfile ? isEdit ? 'Editar Conferencia' : 'Ver Conferencia' : 'Quiero Inscribirme'}
+      </button>) }
     </div>
   )
 }

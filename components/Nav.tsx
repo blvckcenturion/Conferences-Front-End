@@ -63,7 +63,7 @@ const Nav = () => {
             {isOpen && (
                 <div className="nav-menu">
                 <div className="nav-menu-items">
-                    <h3>Buscar Conferencias</h3>
+                    <h3 onClick={() => handleToggle('/find')}>Buscar Conferencias</h3>
                         {getUserToken() ? (
                             <>
                                 <h3 onClick={() => handleToggle('/profile')}>Mi Perfil</h3>

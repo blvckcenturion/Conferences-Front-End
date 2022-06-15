@@ -25,6 +25,7 @@
         @include flex;
         flex-direction: column;
         width: 100%;
+        height: 20vh;
         div{
             width: 90%;
             &:first-child{
