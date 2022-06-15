@@ -1,10 +1,26 @@
 import React from 'react'
+import { useRouter } from 'next/router'
+import { NextPage } from 'next'
+import { useState } from 'react'
+import { Login } from '../lib/user/user'
 
-const login = () => {
-    const handleLogin = (e: { preventDefault: any }) => { 
+const login: NextPage = () => {
+    const router = useRouter()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const handleLogin = async (e: { preventDefault: any }) => { 
         e.preventDefault()
-        console.log('login')
+        const response = await Login({
+            email,
+            password
+        })
+        if (response) {
+            router.push('/profile')
+        } else {
+            alert('Error al iniciar sesión')
+        }
     }
+
   return (
     <div className='login'>
           <form className="form" onSubmit={handleLogin}>
@@ -13,21 +29,21 @@ const login = () => {
               </div>
               <div className="form-body">
                   <div className="form-input">
-                        <label htmlFor="">Email</label>
-                        <input type="text" id="email" name="email" />
+                        <label htmlFor="email">Email</label>
+                      <input type="text" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </div>
                   <div className="form-input">
-                        <label htmlFor="">Password</label>
-                        <input type="text" id="name" name="name" />
+                        <label htmlFor="password">Password</label>
+                      <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} />
                   </div>
               </div>
               <div className="form-action">
                 <button>
-                    Registrarse      
+                    Iniciar Sesion      
                 </button>
               </div>
-              <div className="form-redirect">
-                  <p>Inicia Sesion</p>
+              <div className="form-redirect" onClick={() => router.push('/register')}>
+                  <p>Registrate</p>
               </div>
         </form>
     </div>

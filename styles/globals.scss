@@ -131,11 +131,15 @@ body {
     border: 2px solid;
     label{
       font-family: $main-font;
-      font-size: 1rem;
+      font-size: .9rem;
+      @include md{
+        font-size: 1.2rem;
+        width:40%;
+      }
       @include lg{
         font-size: 1.5rem;
       }
-      width: 40%;
+      width: 45%;
       @include lg{
         width: 30%;
       }

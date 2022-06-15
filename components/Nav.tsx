@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { Spin as Hamburger } from 'hamburger-react'
 import { useRouter } from "next/router"
 import Head from "next/head"
+import { getUserToken, logout } from "../lib/user/user"
+
 const Nav = () => {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
@@ -13,6 +15,12 @@ const Nav = () => {
         } else {
             setIsOpen(!isOpen)
         }
+    }
+
+    const handleLogout = () => {
+        logout()
+        router.push('/')
+        setIsOpen(false)
     }
     const [themeState, setThemeState] = useState(false);
 
@@ -56,8 +64,20 @@ const Nav = () => {
                 <div className="nav-menu">
                 <div className="nav-menu-items">
                     <h3>Buscar Conferencias</h3>
-                    <h3 onClick={() => handleToggle('/login')}>Login</h3>
-                    <h3 onClick={() => handleToggle('/register')}>Registro</h3>
+                        {getUserToken() ? (
+                            <>
+                                <h3 onClick={() => handleToggle('/profile')}>Mi Perfil</h3>
+                                <h3 onClick={handleLogout}>Cerrar Sesion</h3>
+                            </>
+                        ) :
+                        (
+                            <>
+                                <h3 onClick={() => handleToggle('/login')}>Login</h3>
+                                <h3 onClick={() => handleToggle('/register')}>Registro</h3>
+                            </>
+                        ) 
+                        }    
+                    
                     <h3 onClick={handleChange}>{themeState ? 'Light Mode' : 'Dark Mode'}</h3>
                 </div>
             </div>
