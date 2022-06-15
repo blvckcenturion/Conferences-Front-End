@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { loadConference, editConference, deleteConference } from '../../lib/conferences/conferences'
+import { loadConference, loadParticipants, editConference, deleteConference } from '../../lib/conferences/conferences'
 import { useRouter } from 'next/router'
 
 const Edit = (props: any) => {
     const router = useRouter()
     const eDate = new Date(props.endDate)
     const sDate = new Date(props.startDate)
-
+    console.log(props.participants)
     const [city, setCity] = useState<string>(props.city)
     const [country, setCountry] = useState<string>(props.country)
     const [address, setAddress] = useState<string>(props.address)
@@ -46,6 +46,39 @@ const Edit = (props: any) => {
     }
   return (
       <div className='edit'>
+          {props.participants && props.participants.length > 0 && (
+              <div className="edit-list">
+                  <div className='edit-list-heading'>
+                      <h2>Lista de Participantes.</h2>
+                  </div>
+                  <div className='edit-list-table'>
+                      <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                            </tr>
+                        </thead>
+                          <tbody>
+                              {props.participants.map((p: any) => (
+                                  <tr key={p._id}>
+                                      <td>{`${p.firstName} ${p.lastName}`}</td>
+                                      <td>{p.email}</td>
+                                      <td>{p.phone}</td>
+                                  </tr>
+                              ))}
+                            </tbody>
+                      </table>
+                  </div>
+              </div>
+          )}
+          {props.participants && props.participants.length === 0 && (
+              <div className="edit-list">
+                <h2>No hay participantes</h2>
+                </div>
+            )}
+            
           <div className='edit-form'>
             <form className='form'>
                 <div className="form-heading">
@@ -105,6 +138,7 @@ const Edit = (props: any) => {
 Edit.getInitialProps = async (ctx: any) => { 
     const { id } = ctx.query
     const conference = await loadConference(id)
-    return { ...conference }
+    const participants = await loadParticipants(id)
+    return { ...conference, participants}
 }
 export default Edit

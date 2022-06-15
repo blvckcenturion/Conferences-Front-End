@@ -42,6 +42,9 @@
                 @include md{
                     font-size: 1.2rem;
                 }
+                p{
+                    width: 50%;
+                }
                 color: $accent-color;
             }
         }

@@ -20,6 +20,15 @@ export const loadConferencesByDate = async (startDate: string, endDate : string)
     return response;
 }
 
+export const loadParticipants = async (conferenceId: string) => { 
+    const response = await axios({
+        method: "GET",
+        url: `/${conferenceId}/participants`,
+        
+    })
+    return response.data;
+}
+
 export const loadConference = async (id: string) => {
     const url =`${baseURL}/conferences/${id}`;
     const response = await axios({

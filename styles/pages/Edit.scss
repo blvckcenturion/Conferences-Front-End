@@ -2,11 +2,41 @@
     @include flex;
     width: 100%;
     flex-direction: column;
-    background-color: red;
+    &-list{
+        margin: 5vh 0;
+        @include flex;
+        flex-direction: column;
+        width: 90%;
+        
+        &-heading{
+            border: 2px solid;
+            @include flex;
+            width: 80%;
+            height: 10vh;
+            h2{
+                font-size: 2.5rem;
+                font-family: $main-font;
+            }
+        }
+        &-table {
+            width: 80%;
+            border: 2px solid;
+            border-top:none;
+            table{
+                width: 100%;
+                border:red;
+                text-align: center;
+                thead{
+                    height: 5vh;
+                    color: $dark;
+                    background-color: $accent-color;
+                }
+            }
+        }
+    }
     &-form{
         @include flex;
         width: 90%;
-        background-color: gold;
         form{
             width: 80%;
             button:first-of-type{

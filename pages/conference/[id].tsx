@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import { loadConference, loadConferences, subscribeToConference } from '../../lib/conferences/conferences'
-import {getUser} from '../../lib/user/user'
+import { getUser } from '../../lib/user/user'
+import { useRouter } from 'next/router'
 interface Props {
     userId: string,
     name: string,
@@ -20,6 +21,7 @@ interface Props {
 
 
 const Conference: NextPage<Props> = ({ participants, id, userId, image, description, city,country,address,name, startDate, endDate, presenters, addressDetails }) => {
+    const router = useRouter()
     const [user, setUser] = useState<any>();
     const sDate = new Date(startDate)
     const eDate = new Date(endDate)
@@ -33,7 +35,10 @@ const Conference: NextPage<Props> = ({ participants, id, userId, image, descript
     const handleInscription = async () => {
         // console.log(id)
         const response = await subscribeToConference(id)
-        console.log(response)
+        if (response) {
+            alert('Inscripcion realizada con exito.')
+            router.push('/')
+        }
     }
 
     useEffect(() => {
