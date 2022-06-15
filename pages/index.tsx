@@ -1,14 +1,31 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import ThemeChanger from '../theme/ThemeChanger'
+import { loadConferences } from '../lib/conferences/conferences'
+import ConferenceSection from '../components/Conferences/ConferenceSection'
 
-const Home: NextPage = () => {
+interface Props {
+  conferences: any[]
+}
+
+const Home: NextPage<Props> = ({conferences}) => {
+  console.log(conferences)
   return (
-    <div className={styles.container}>
-      Hello!
+    <div className='home'>
+      <ThemeChanger />
+      <ConferenceSection/>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const conferences = await loadConferences()
+  return {
+    props: {
+      conferences:conferences
+    }
+  }
 }
 
 export default Home

@@ -1,0 +1,33 @@
+.nav {
+    @include flex;
+    height: 70px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    position: sticky;
+    top: 0;
+    @include md{
+        height: 100px;
+    }
+    h1 {
+        margin: 0;
+        font-family: $main-font;
+        width: 40%;
+        font-size: 1.5rem;
+        letter-spacing: 5px;
+        @include md{
+            font-size: 3rem;
+        }
+    }
+    div{
+        width: 40%;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        height: 100%;
+        @include flex;
+    }
+}

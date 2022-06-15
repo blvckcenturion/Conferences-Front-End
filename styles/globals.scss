@@ -1,0 +1,39 @@
+@import './index.scss';
+
+@font-face{
+  font-family: 'Neutral';
+  src: url('/fonts/Neutral.otf');
+}
+
+@font-face{
+  font-family: 'SF';
+  src: url('/fonts/SF.OTF');
+}
+
+
+body.dark-mode{
+  background-color: $dark;
+  color: $light;
+  h1{
+    color: $light;
+  }
+  .nav{
+    background-color: $dark;
+  }
+}
+
+body {
+  background-color: $light;
+  color: $dark;
+  font-family: $secondary-font;
+  overflow-x: hidden;
+  .nav{
+    background-color: $light;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
