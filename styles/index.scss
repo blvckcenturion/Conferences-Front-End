@@ -4,6 +4,11 @@
 // Components
 @import './components/Nav.scss';
 @import './components/Layout.scss';
+@import './components/Conferences/ConferenceSection.scss';
+@import './components/Conferences/ConferenceCard.scss';
 
 // Pages
 @import './pages/Home.scss';
+@import './pages/Conference.scss';
+@import './pages/Login.scss';
+@import './pages/Register.scss';

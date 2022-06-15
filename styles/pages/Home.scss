@@ -1,12 +1,6 @@
 .home {
-    background-color: yellow;
     width: 90%;
-    @include lg{
-        width:80%
-    }
     @include xl{
-        width: 70%;
-    }
-
-    
+        width: 80%;
+    }    
 }

@@ -1,0 +1,42 @@
+.conference-section{
+    @include flex;
+    margin-bottom: 5vh;
+    width: 100%;
+    flex-direction: column;
+    
+    &-title {
+        @include flex;
+        width: 100%;
+        font-family: $main-font;
+        font-size: .8rem;
+        text-align: center;
+        line-height: 1.5;
+        @include md{
+            font-size: 1.1rem;
+        }
+        @include lg{
+            font-size: 1.6rem;
+        }
+        @include xl{
+            font-size: 1.8rem;
+        }
+        font-weight: bold;
+        margin-bottom: 1rem;
+        b{
+            color: $accent-color;
+        }
+    }
+    &-content {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        @include md{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include lg{
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        grid-gap: 1.5rem;
+    }
+}

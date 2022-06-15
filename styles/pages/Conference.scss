@@ -1,0 +1,126 @@
+.conference {
+    @include flex;
+    
+    @include lg{
+        border: {
+            bottom: 2px solid;
+        }
+    }
+    flex-direction: column;
+    @include lg{
+        flex-direction: row;
+    }
+    width: 100%;
+    > div{
+        width: 100%;
+        @include lg{
+            width: 50%;
+        }
+    }
+    > div:first-child {
+        @include flex;
+        margin-top: 5vh;
+        @include lg{
+            margin-top: 0;
+        }
+        flex-direction: column;
+        > div:first-child{
+            @include flex;
+            flex-direction: column;
+            width: 100%;
+            height: 40vh;
+            @include md{
+                height: 30vh;
+            }
+            @include lg{
+                height: 35vh;
+            }
+            p{
+                margin: 0;
+                font-size: 1rem;
+                @include md{
+                    font-size: 1.2rem;
+                }
+                @include lg{
+                    font-size: 1.4rem;
+                }
+                color: $accent-color;
+                text-align: center;
+            }
+            h1{
+                font-family: $main-font;
+                font-size: 2rem;
+                text-align: center;
+            }
+        }
+        > div:last-child{
+            @include flex;
+            border-top: 2px solid;
+            width: 100%;
+            height: 60vh;
+            img {
+                object-fit: cover;
+                width: 90%;
+                height: 90%;
+            }
+        }
+        @include lg{
+            border-right: 2px solid;
+        }
+    }
+    > div:last-child{
+        > div:first-child{
+            @include flex;
+            width: 100%;
+            height: 15vh;
+
+            border: {
+                top: 2px solid;
+                bottom: 2px solid;
+            };
+
+            @include lg{
+                border: {
+                    top: none;
+                }
+            }
+            h3 {
+                width: 50%;
+                font-family: $main-font;
+                font-size: 1.2rem;
+                @include md{
+                    font-size: 1.5rem;
+                }
+                @include lg{    
+                    font-size: 2.5rem;
+                }
+            }
+            button{
+                width: 40%;
+                height: 50%;
+                background-color: transparent;
+                transition: 0.8s;
+                border: 2px solid;
+                &:hover{
+                    background-color: $accent-color;
+                }
+            }
+        }
+        > div:last-child{
+            height: 60vh;
+            @include flex;
+            > div:first-child{
+                background-color: red;
+            }
+            p{
+                text-align: center;
+                font-size: 1.5rem;
+                margin:0;
+                @include lg{
+                    font-size: 2rem;
+                    text-align: initial;
+                }
+            }
+        }
+    }
+}

@@ -1,11 +1,20 @@
 import React, { FC } from 'react'
+import ConferenceCard from './ConferenceCard'
 
-const ConferenceSection: FC = () => {
+interface Props {
+    city: string,
+    conferences: any[],
+}
+
+const ConferenceSection: FC<Props> = ({ city, conferences }) => {
+    console.log(conferences)
   return (
-    <div className="conferences-section">
-          <h2>Eventos en <b>Cochabamba</b></h2>
-          <div className="conferences-section-content">
-              
+      <div className="conference-section">
+          <div className="conference-section-title">
+            <h2>EVENTOS EN <b>{city.toUpperCase()} ({conferences.length})</b></h2>    
+          </div>
+          <div className="conference-section-content">
+        {conferences.map((conference, i) => <ConferenceCard key={i} id={conference._id} {...conference}/>)}
           </div>
     </div>
   )

@@ -20,6 +20,16 @@ body.dark-mode{
   .nav{
     background-color: $dark;
   }
+  button{
+    border-color: $light !important;
+    color: $light !important;
+  }
+  .form{
+    border-color: $light !important;
+  }
+  input{
+    color: $light !important;
+  }
 }
 
 body {
@@ -32,7 +42,123 @@ body {
   }
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  button{
+    border-color: $dark !important;
+    color: $dark !important;
+  }
+  input{
+    color: $dark !important;
+  }
 }
+
+.form{
+  margin: 5vh 0;
+  @include flex;
+  flex-direction: column;
+  width: 90%;
+  @include md{
+    width:80%;
+  }
+  @include lg{
+    width: 50%;
+  }
+  border: 2px solid;
+  &-heading{
+    width: 100%;
+    height: 10vh;
+    @include flex;
+    margin-bottom: 5vh;
+    border-bottom: 2px solid;
+    h2{
+      font-family: $main-font;
+      font-size: 1.5rem;
+      @include lg{
+        font-size: 2.5rem;
+      }
+    }
+  }
+  &-body{
+    @include flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  &-action {
+    @include flex;
+    width: 100%;
+    height: 8vh;
+    button{
+      width: 70%;
+      @include lg{
+        width: 50%;
+      }
+      height: 100%;
+      border: 2px solid;
+      font-size: 1.2rem;
+      transition: 0.8s;
+      @include lg{
+        font-size: 2rem;
+      }
+      background-color: transparent;
+      &:hover {
+        background-color: $accent-color;
+      }
+      
+    }
+    margin-bottom: 5vh
+  }
+  &-redirect{
+    border-top: 2px solid;
+    @include flex;
+    width: 100%;
+    height: 5vh;
+    font-size: 1.2rem;
+    transition: 0.8s;
+    @include lg{
+      font-size: 1.8rem;
+    }
+    &:hover {
+      background-color: $accent-color;
+    }
+  }
+  &-input {
+    @include flex;
+    width: 90%;
+    @include lg{
+      width: 80%;
+    }
+    height: 5vh;
+    margin-bottom: 5vh;
+    border: 2px solid;
+    label{
+      font-family: $main-font;
+      font-size: 1rem;
+      @include lg{
+        font-size: 1.5rem;
+      }
+      width: 40%;
+      @include lg{
+        width: 30%;
+      }
+      height: 100%;
+      @include flex;
+      border-right: 2px solid;
+    }
+    input{
+      font-family: $secondary-font !important;
+      width: calc(70% - 4px);
+      height: calc(100% - 2px);
+      background-color: transparent;
+      border: none;
+      font-family: $main-font;
+      font-size: 1.2rem;
+      @include md{
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+
 
 ::-webkit-scrollbar {
   display: none;

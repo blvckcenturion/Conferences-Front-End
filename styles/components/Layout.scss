@@ -1,8 +1,8 @@
 .layout{
     @include flex;
     width: 100vw;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 72px);
     @include md{
-        min-height: calc(100vh - 100px);
+        min-height: calc(100vh - 102px);
     }
 }

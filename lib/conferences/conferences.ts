@@ -8,3 +8,11 @@ export const loadConferences = async () => {
     })
     return response.data;
 }
+
+export const loadConference = async (id: string) => {
+    const response = await axios({
+        method: "GET",
+        url: `/${id}`,
+    })
+    return response.data;
+}
