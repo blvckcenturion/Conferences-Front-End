@@ -11,7 +11,7 @@ import ConferenceCard from '../components/Conferences/ConferenceCard'
 const profile = () => {
   const router = useRouter()
   const [user, setUser] = useState<any>()
-  const [tab, setTab] = useState<string>('created')
+  const [tab, setTab] = useState<string>('new')
   useEffect(() => {
     if(!getUserToken()) {
       router.push('/login')
@@ -149,9 +149,14 @@ const NewConferences = ({setTab} : {setTab: Function}) => {
 const CreatedConferences = () => { 
   const [conferences, setConferences] = useState<any>([])
   useEffect(() => { 
-    const user = getUser()
-    if (!user) return
-    // const response = await ge
+    (async () => {
+      const user = await getUser()
+      if(user) {
+        const conferences = await loadByCreator()
+        setConferences(conferences)
+        console.log(conferences)
+      }
+    })()
   },[])
 
   return (
@@ -162,7 +167,7 @@ const CreatedConferences = () => {
       <div>
         {conferences && conferences.length > 0 && (
           <div className='joined-grid'>
-            {conferences.map((conference: any, id: number) => <ConferenceCard {...conference} key={id} id={conference._id} isProfile={true} />)}
+            {conferences.map((conference: any, id: number) => <ConferenceCard {...conference} key={id} id={conference._id} isProfile={true} isEdit={true} />)}
           </div>
         )}
         {conferences && conferences.length === 0 && (

@@ -50,8 +50,8 @@ const Conference: NextPage<Props> = ({ participants, id, userId, image, descript
       <div className="conference">
           <div>
               <div>
-                <p>{`INICIO: ${startDay}, ${sDate.getDate()} DE ${startMonth}, ${sDate.getFullYear()}`.toUpperCase()}</p>
-                <p>{`FIN: ${endDay}, ${eDate.getDate()} DE ${endMonth}, ${sDate.getFullYear()}`.toUpperCase()}</p>
+                <p>{`INICIO: ${startDay}, ${sDate.getDate()+1} DE ${startMonth}, ${sDate.getFullYear()}`.toUpperCase()}</p>
+                <p>{`FIN: ${endDay}, ${eDate.getDate()+1} DE ${endMonth}, ${sDate.getFullYear()}`.toUpperCase()}</p>
                 <h1>{name}</h1>
                 <p>{`${presenters.length > 1 ? 'ORADORES' : 'ORADOR'}: ${presenters.join(', ').toUpperCase()}`}</p>
                 <p>{`${city}, ${country}, ${address}${ addressDetails ? ` ${addressDetails}` : ''}`}</p>

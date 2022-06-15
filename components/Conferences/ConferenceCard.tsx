@@ -15,14 +15,15 @@ interface Props {
 const ConferenceCard : FC<Props> = ({image, name, startDate, presenters, id, isProfile, isEdit}) => {
   const router = useRouter()
   const date = new Date(startDate)
-  const day = date.getDate()
+  const day = date.getDate()+1
   const month = date.getMonth() + 1
   const year = date.getFullYear()
 
   const handleClick = () => {
-    router.push(`/conference/${id}`)
     if (isEdit) {
       router.push(`/edit/${id}`)
+    } else {
+      router.push(`/conference/${id}`)
     }
   }
   return (

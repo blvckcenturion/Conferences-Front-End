@@ -1,0 +1,20 @@
+.edit{
+    @include flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: red;
+    &-form{
+        @include flex;
+        width: 90%;
+        background-color: gold;
+        form{
+            width: 80%;
+            button:first-of-type{
+                border-left: none;
+            }
+            button:last-of-type{
+                border-right: none;
+            }
+        }
+    }
+}

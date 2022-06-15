@@ -91,7 +91,6 @@
         min-height: 90vh;
         > div{
             @include flex;
-            background-color: blue;
             width: 90%;
             height: 95%;
         }

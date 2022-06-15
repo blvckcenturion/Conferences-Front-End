@@ -39,6 +39,7 @@ export const loadByCreator = async () => {
                 Authorization: `Bearer ${token}`
             }
         })
+        return response.data;
     }
 }
 
@@ -91,6 +92,35 @@ export const subscribeToConference = async (id: string) => {
         const response = await axios({
             method: "PATCH",
             url: `/${id}/participants`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response;
+    }
+}
+
+export const editConference = async (id: string, data: Conference) => { 
+    const token = getUserToken();
+    if (token) {
+        const response = await axios({
+            method: "PATCH",
+            url: `/${id}`,
+            data,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response;
+    }
+}
+
+export const deleteConference = async (id: string) => { 
+    const token = getUserToken();
+    if (token) {
+        const response = await axios({
+            method: "DELETE",
+            url: `/${id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
